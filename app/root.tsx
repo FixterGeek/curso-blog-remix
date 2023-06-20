@@ -8,14 +8,28 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import tailwind from "./styles/style.css";
 
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ...(cssBundleHref
+    ? [
+        { rel: "stylesheet", href: cssBundleHref },
+        {
+          rel: "stylesheet",
+          href: tailwind,
+        },
+      ]
+    : [
+        {
+          rel: "stylesheet",
+          href: tailwind,
+        },
+      ]),
 ];
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />

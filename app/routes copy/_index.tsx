@@ -1,8 +1,10 @@
 import type { V2_MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-const NODE_ENV = process.env.NODE_ENV;
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+declare global {
+  const NODE_ENV: "development" | "production";
+  const GOOGLE_CLIENT_ID: string;
+}
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -23,7 +25,7 @@ export default function Index() {
         id="g_id_onload"
         data-client_id={GOOGLE_CLIENT_ID}
         data-login_uri={
-          NODE_ENV === "development" ? "http://localhost:3000/login" : ""
+          NODE_ENV === "development" ? "http://localhost:8787/login" : ""
         }
         data-cancel_on_tap_outside="false"
       ></div>
