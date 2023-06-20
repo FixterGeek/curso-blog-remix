@@ -2,6 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
+    "postinstall": "npx prisma generate --data-proxy",
     "deploy": "netlify deploy --build --prod",
     "build": "npm run build:tailwind && remix build",
     "dev": "npx concurrently  \"remix dev\" \"npm run dev:tailwind\" ",
