@@ -10,13 +10,14 @@ import slugify from "slugify";
 import { type UpdatePostType, updatePostSchema } from "~/utils/zod";
 import { db } from "~/utils/db";
 import toast, { Toaster } from "react-hot-toast";
-import { Suspense, createRef, useEffect } from "react";
+import { Suspense, createRef, useEffect, useLayoutEffect } from "react";
 import { signal } from "@preact/signals-react";
 import invariant from "tiny-invariant";
 import Switch from "~/components/Switch";
 import { markdownParser } from "~/utils/markdoc.server";
 import { type RenderableTreeNodes } from "@markdoc/markdoc";
 import prismjsStyles from "~/styles/prismjs.css";
+import prism from "prismjs";
 
 export const links: LinksFunction = () => {
   return [
@@ -71,6 +72,9 @@ export default function PostEdit() {
   const fetcher = useFetcher();
   const formRef = createRef<HTMLFormElement>();
   const timeout = signal<ReturnType<typeof setTimeout> | null>(null);
+  useLayoutEffect(() => {
+    prism.highlightAll();
+  }, []);
   useEffect(() => {
     if (fetcher.data?.ok) {
       toast.success("Se ha guardado tu post", {
