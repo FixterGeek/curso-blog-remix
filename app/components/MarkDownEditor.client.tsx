@@ -4,12 +4,10 @@ import { javascript } from "@codemirror/lang-javascript";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
 import { languages } from "@codemirror/language-data";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { ContentToJSX } from "./ContentToJSX.client";
 import type { RenderableTreeNodes } from "@markdoc/markdoc";
 import { twMerge } from "tailwind-merge";
-
-const mode = signal<"view" | "edit" | "both">("both");
 
 export default function MarkdownEditor({
   onChange,
@@ -20,6 +18,7 @@ export default function MarkdownEditor({
   onChange?: (value: string) => void;
   defaultValue?: string;
 }) {
+  const [mode, setMode] = useState<"view" | "edit" | "both">("both");
   const state = signal(defaultValue);
   const handleChange = (value: string) => {
     state.value = value;
@@ -27,16 +26,16 @@ export default function MarkdownEditor({
   };
 
   const handleToggle = () => {
-    if (mode.value === "view") {
-      mode.value = "edit";
-    } else if (mode.value === "edit") {
-      mode.value = "both";
+    if (mode === "view") {
+      setMode("edit");
+    } else if (mode === "edit") {
+      setMode("both");
     } else {
-      mode.value = "view";
+      setMode("view");
     }
     console.log("Terminó ", mode);
   };
-  console.log("Señal ", mode.value);
+
   return (
     <>
       <nav className="flex gap-4 py-2">
@@ -50,10 +49,10 @@ export default function MarkdownEditor({
       <div
         className={twMerge(
           "grid grid-cols-2 min-h-[60vh] overflow-hidden",
-          mode.value !== "both" && "grid-cols-1"
+          mode !== "both" && "grid-cols-1"
         )}
       >
-        {mode.value !== "view" && (
+        {mode !== "view" && (
           <CodeMirror
             className="flex-1"
             value={state.value}
@@ -66,12 +65,10 @@ export default function MarkdownEditor({
             ]}
           />
         )}
-        {mode.value !== "edit" && (
-          <Suspense fallback={null}>
-            <div className="flex-2 border border-dashed p-2">
-              <ContentToJSX content={content} />
-            </div>
-          </Suspense>
+        {mode !== "edit" && (
+          <div className="flex-2 border border-dashed p-2">
+            <ContentToJSX content={content} />
+          </div>
         )}
       </div>
     </>

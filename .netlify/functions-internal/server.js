@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -41,9 +42,16 @@ var require_MarkDownEditor = __commonJS({
   }
 });
 
-// <stdin>
-var stdin_exports = {};
-__export(stdin_exports, {
+// server.ts
+var server_exports = {};
+__export(server_exports, {
+  handler: () => handler
+});
+module.exports = __toCommonJS(server_exports);
+
+// server-entry-module:@remix-run/dev/server-build
+var server_build_exports = {};
+__export(server_build_exports, {
   assets: () => assets_manifest_default,
   assetsBuildDirectory: () => assetsBuildDirectory,
   entry: () => entry,
@@ -51,14 +59,13 @@ __export(stdin_exports, {
   publicPath: () => publicPath,
   routes: () => routes
 });
-module.exports = __toCommonJS(stdin_exports);
 
 // app/entry.server.tsx
 var entry_server_exports = {};
 __export(entry_server_exports, {
   default: () => handleRequest
 });
-var import_node_stream = require("node:stream"), import_node = require("@remix-run/node"), import_react = require("@remix-run/react"), import_isbot = __toESM(require("isbot")), import_server = require("react-dom/server"), import_jsx_dev_runtime = require("react/jsx-dev-runtime"), ABORT_DELAY = 5e3;
+var import_node_stream = require("node:stream"), import_node = require("@remix-run/node"), import_react = require("@remix-run/react"), import_isbot = __toESM(require("isbot")), import_server = require("react-dom/server"), import_jsx_runtime = require("react/jsx-runtime"), ABORT_DELAY = 5e3;
 function handleRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext) {
   return (0, import_isbot.default)(request.headers.get("user-agent")) ? handleBotRequest(
     request,
@@ -75,21 +82,13 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
 function handleBotRequest(request, responseStatusCode, responseHeaders, remixContext) {
   return new Promise((resolve, reject) => {
     let shellRendered = !1, { pipe, abort } = (0, import_server.renderToPipeableStream)(
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         import_react.RemixServer,
         {
           context: remixContext,
           url: request.url,
           abortDelay: ABORT_DELAY
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/entry.server.tsx",
-          lineNumber: 48,
-          columnNumber: 7
-        },
-        this
+        }
       ),
       {
         onAllReady() {
@@ -116,21 +115,13 @@ function handleBotRequest(request, responseStatusCode, responseHeaders, remixCon
 function handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext) {
   return new Promise((resolve, reject) => {
     let shellRendered = !1, { pipe, abort } = (0, import_server.renderToPipeableStream)(
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         import_react.RemixServer,
         {
           context: remixContext,
           url: request.url,
           abortDelay: ABORT_DELAY
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/entry.server.tsx",
-          lineNumber: 97,
-          columnNumber: 7
-        },
-        this
+        }
       ),
       {
         onShellReady() {
@@ -164,10 +155,10 @@ __export(root_exports, {
 var import_css_bundle = __toESM(require_dist()), import_react2 = require("@remix-run/react");
 
 // app/styles/style.css
-var style_default = "/build/_assets/style-WX23FDCE.css";
+var style_default = "/build/_assets/style-ZAENSWH3.css";
 
 // app/root.tsx
-var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), links = () => [
+var import_jsx_runtime2 = require("react/jsx-runtime"), links = () => [
   ...import_css_bundle.cssBundleHref ? [
     { rel: "stylesheet", href: import_css_bundle.cssBundleHref },
     {
@@ -182,64 +173,20 @@ var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), links = () => [
   ]
 ];
 function App() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("html", { lang: "en", className: "dark", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("head", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("meta", { charSet: "utf-8" }, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 34,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 35,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Meta, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 36,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Links, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 37,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/root.tsx",
-      lineNumber: 33,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("body", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Outlet, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 40,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.ScrollRestoration, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 41,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.Scripts, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 42,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react2.LiveReload, {}, void 0, !1, {
-        fileName: "app/root.tsx",
-        lineNumber: 43,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/root.tsx",
-      lineNumber: 39,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/root.tsx",
-    lineNumber: 32,
-    columnNumber: 5
-  }, this);
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("html", { lang: "en", className: "dark", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("head", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("meta", { charSet: "utf-8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Meta, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Links, {})
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("body", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Outlet, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.ScrollRestoration, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.Scripts, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.LiveReload, {})
+    ] })
+  ] });
 }
 
 // app/routes/dash_.$postId.edit.tsx
@@ -278,51 +225,31 @@ var oneTapDataSchema = import_zod.z.object({
 
 // app/utils/db.ts
 var import_edge = require("@prisma/client/edge"), db;
-global.__db__ || (global.__db__ = new import_edge.PrismaClient()), db = global.__db__, db.$connect();
+db = new import_edge.PrismaClient();
 
 // app/routes/dash_.$postId.edit.tsx
 var import_react_hot_toast = __toESM(require("react-hot-toast")), import_react6 = require("react"), import_signals_react = require("@preact/signals-react"), import_tiny_invariant = __toESM(require("tiny-invariant"));
 
 // app/components/Switch.tsx
-var import_react3 = require("react"), import_react4 = require("@headlessui/react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
+var import_react3 = require("react"), import_react4 = require("@headlessui/react"), import_jsx_runtime3 = require("react/jsx-runtime");
 function ToggleButton({ defaultValue, name }) {
   let [enabled, setEnabled] = (0, import_react3.useState)(Boolean(defaultValue));
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
     import_react4.Switch,
     {
       checked: enabled,
       onChange: setEnabled,
       className: `${enabled ? "bg-indigo-600" : "bg-gray-200"} relative inline-flex h-6 w-11 items-center rounded-full transition-all`,
       children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
           "span",
           {
             className: `${enabled ? "translate-x-6" : "translate-x-1"} inline-block h-4 w-4 transform rounded-full bg-white transition`
-          },
-          void 0,
-          !1,
-          {
-            fileName: "app/components/Switch.tsx",
-            lineNumber: 19,
-            columnNumber: 7
-          },
-          this
+          }
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("input", { type: "checkbox", checked: enabled, name, hidden: !0, readOnly: !0 }, void 0, !1, {
-          fileName: "app/components/Switch.tsx",
-          lineNumber: 24,
-          columnNumber: 7
-        }, this)
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("input", { type: "checkbox", checked: enabled, name, hidden: !0, readOnly: !0 })
       ]
-    },
-    void 0,
-    !0,
-    {
-      fileName: "app/components/Switch.tsx",
-      lineNumber: 12,
-      columnNumber: 5
-    },
-    this
+    }
   );
 }
 
@@ -333,10 +260,10 @@ function markdownParser(markdown) {
 }
 
 // app/styles/prismjs.css
-var prismjs_default = "/build/_assets/prismjs-OJHU2WSU.css";
+var prismjs_default = "/build/_assets/prismjs-ZGH27OJQ.css";
 
 // app/routes/dash_.$postId.edit.tsx
-var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime"), links2 = () => [
+var import_jsx_runtime4 = require("react/jsx-runtime"), links2 = () => [
   {
     rel: "stylesheet",
     href: prismjs_default
@@ -386,16 +313,12 @@ function PostEdit() {
       formData.append("body", content2), fetcher.submit(formData, { method: "post" });
     }, 2e3);
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-slate-200", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("main", { className: "max-w-5xl mx-auto py-20 px-4", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(fetcher.Form, { method: "post", ref: formRef, children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { className: "text-xs mb-2", children: "Editando tu post:" }, void 0, !1, {
-            fileName: "app/routes/dash_.$postId.edit.tsx",
-            lineNumber: 104,
-            columnNumber: 13
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-slate-200", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("main", { className: "max-w-5xl mx-auto py-20 px-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(fetcher.Form, { method: "post", ref: formRef, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("label", { className: "text-xs mb-2", children: "Editando tu post:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
             "input",
             {
               className: "py-2 px-4 rounded-md w-full text-slate-500",
@@ -403,29 +326,13 @@ function PostEdit() {
               placeholder: "Escribe un t\xEDtulo",
               defaultValue: title,
               name: "title"
-            },
-            void 0,
-            !1,
-            {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 105,
-              columnNumber: 13
-            },
-            this
+            }
           )
-        ] }, void 0, !0, {
-          fileName: "app/routes/dash_.$postId.edit.tsx",
-          lineNumber: 103,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("section", { className: "flex gap-4 items-end", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { className: "text-xs", children: "Agrega una imagen de portada:" }, void 0, !1, {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 115,
-              columnNumber: 15
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { className: "flex gap-4 items-end", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("label", { className: "text-xs", children: "Agrega una imagen de portada:" }),
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
               "input",
               {
                 className: "py-2 px-4 rounded-md w-full text-slate-500",
@@ -433,28 +340,12 @@ function PostEdit() {
                 placeholder: "Pega el link de una imagen",
                 defaultValue: cover,
                 name: "cover"
-              },
-              void 0,
-              !1,
-              {
-                fileName: "app/routes/dash_.$postId.edit.tsx",
-                lineNumber: 116,
-                columnNumber: 15
-              },
-              this
+              }
             )
-          ] }, void 0, !0, {
-            fileName: "app/routes/dash_.$postId.edit.tsx",
-            lineNumber: 114,
-            columnNumber: 13
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { className: "text-xs ", children: "Agrega un tag:" }, void 0, !1, {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 125,
-              columnNumber: 15
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("label", { className: "text-xs ", children: "Agrega un tag:" }),
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
               "input",
               {
                 className: "py-2 px-4 rounded-md w-full text-slate-500",
@@ -462,126 +353,42 @@ function PostEdit() {
                 placeholder: "Escribe tags separadas con coma (,)",
                 defaultValue: tags,
                 name: "tags"
-              },
-              void 0,
-              !1,
-              {
-                fileName: "app/routes/dash_.$postId.edit.tsx",
-                lineNumber: 126,
-                columnNumber: 15
-              },
-              this
+              }
             )
-          ] }, void 0, !0, {
-            fileName: "app/routes/dash_.$postId.edit.tsx",
-            lineNumber: 124,
-            columnNumber: 13
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor: "", children: "P\xFAblico" }, void 0, !1, {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 135,
-              columnNumber: 15
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(ToggleButton, { name: "published", defaultValue: published }, void 0, !1, {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 136,
-              columnNumber: 15
-            }, this)
-          ] }, void 0, !0, {
-            fileName: "app/routes/dash_.$postId.edit.tsx",
-            lineNumber: 134,
-            columnNumber: 13
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("label", { htmlFor: "", children: "P\xFAblico" }),
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ToggleButton, { name: "published", defaultValue: published })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
             "button",
             {
               disabled: fetcher.state !== "idle",
               className: "disabled:bg-gray-600 px-6 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 py-2",
               children: "Guardar"
-            },
-            void 0,
-            !1,
-            {
-              fileName: "app/routes/dash_.$postId.edit.tsx",
-              lineNumber: 138,
-              columnNumber: 13
-            },
-            this
+            }
           )
-        ] }, void 0, !0, {
-          fileName: "app/routes/dash_.$postId.edit.tsx",
-          lineNumber: 113,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 102,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex text-red-500", children: ((_a = fetcher.data) == null ? void 0 : _a.error) && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("ul", { children: fetcher.data.error.issues.map(
-        (err) => /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("li", { children: [
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "flex text-red-500", children: ((_a = fetcher.data) == null ? void 0 : _a.error) && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("ul", { children: fetcher.data.error.issues.map(
+        (err) => /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("li", { children: [
           err.path,
           " ",
           err.message
-        ] }, err.path, !0, {
-          fileName: "app/routes/dash_.$postId.edit.tsx",
-          lineNumber: 150,
-          columnNumber: 13
-        }, this)
-      ) }, void 0, !1, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 148,
-        columnNumber: 11
-      }, this) }, void 0, !1, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 146,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("hr", { className: "border-none bg-indigo-500 h-[1px] my-2" }, void 0, !1, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 157,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react6.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: "Cargando..." }, void 0, !1, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 158,
-        columnNumber: 29
-      }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
+        ] }, err.path)
+      ) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("hr", { className: "border-none bg-indigo-500 h-[1px] my-2" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react6.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { children: "Cargando..." }), children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         import_MarkDownEditor.default,
         {
           content,
           defaultValue: body,
           onChange: handleAutoSave
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/routes/dash_.$postId.edit.tsx",
-          lineNumber: 159,
-          columnNumber: 11
-        },
-        this
-      ) }, void 0, !1, {
-        fileName: "app/routes/dash_.$postId.edit.tsx",
-        lineNumber: 158,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/routes/dash_.$postId.edit.tsx",
-      lineNumber: 101,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react_hot_toast.Toaster, {}, void 0, !1, {
-      fileName: "app/routes/dash_.$postId.edit.tsx",
-      lineNumber: 166,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/dash_.$postId.edit.tsx",
-    lineNumber: 100,
-    columnNumber: 5
-  }, this);
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react_hot_toast.Toaster, {})
+  ] });
 }
 
 // app/routes/_index.tsx
@@ -591,56 +398,32 @@ __export(index_exports, {
   loader: () => loader2,
   meta: () => meta
 });
-var import_react7 = require("@remix-run/react"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime"), NODE_ENV = "development", GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID, meta = () => [
+var import_react7 = require("@remix-run/react"), import_jsx_runtime5 = require("react/jsx-runtime"), NODE_ENV = "production", GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID, meta = () => [
   { title: "Construye un blog con Remix" },
   { name: "description", content: "Hola blissmo" }
 ], loader2 = async () => (console.log("NODENV: ", NODE_ENV), { NODE_ENV, GOOGLE_CLIENT_ID });
 function Index() {
   let { NODE_ENV: NODE_ENV2, GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID2 } = (0, import_react7.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex min-h-screen main", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: "flex min-h-screen main", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
       "div",
       {
         id: "g_id_onload",
         "data-client_id": GOOGLE_CLIENT_ID2,
         "data-login_uri": NODE_ENV2 === "development" ? "http://localhost:3000/login" : "https://curso-blog-remix.netlify.app/login",
         "data-cancel_on_tap_outside": "false"
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 23,
-        columnNumber: 7
-      },
-      this
+      }
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
       "div",
       {
         dangerouslySetInnerHTML: {
           __html: ' <script src="https://accounts.google.com/gsi/client" async defer></script>'
         }
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 33,
-        columnNumber: 7
-      },
-      this
+      }
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("p", { className: "text-xs absolute bottom-[36%] text-gray-500 w-full left-0 text-center pr-8", children: "Culaquier otro t\xE9rmino y condici\xF3n necesario de mencionar" }, void 0, !1, {
-      fileName: "app/routes/_index.tsx",
-      lineNumber: 38,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/_index.tsx",
-    lineNumber: 22,
-    columnNumber: 5
-  }, this);
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { className: "text-xs absolute bottom-[36%] text-gray-500 w-full left-0 text-center pr-8", children: "Culaquier otro t\xE9rmino y condici\xF3n necesario de mencionar" })
+  ] });
 }
 
 // app/routes/login.tsx
@@ -672,7 +455,7 @@ async function getOrCreateUser(credential) {
 }
 
 // app/routes/login.tsx
-var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), action2 = async ({ request }) => {
+var import_jsx_runtime6 = require("react/jsx-runtime"), action2 = async ({ request }) => {
   let formData = await request.formData(), body = Object.fromEntries(formData), data = {
     credential: String(body.credential),
     g_csrf_token: String(body.g_csrf_token)
@@ -680,50 +463,26 @@ var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), action2 = async 
   return validated.success ? (await getOrCreateUser(data.credential), (0, import_node3.redirect)("/dash")) : (console.log("Not valid?", validated), null);
 };
 function Login() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { className: "flex justify-center items-center min-h-screen border-red-500", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "flex justify-center items-center min-h-screen border-red-500", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
       "div",
       {
         id: "g_id_onload",
         "data-client_id": "325591888601-04tqp5q9kifu77j699pqi8o6pqjd74jb.apps.googleusercontent.com",
         "data-login_uri": "https://623c-187-189-88-81.ngrok-free.app/login",
         "data-cancel_on_tap_outside": "false"
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/login.tsx",
-        lineNumber: 28,
-        columnNumber: 7
-      },
-      this
+      }
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
       "div",
       {
         dangerouslySetInnerHTML: {
           __html: ' <script src="https://accounts.google.com/gsi/client" async defer></script>'
         }
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/login.tsx",
-        lineNumber: 34,
-        columnNumber: 7
-      },
-      this
+      }
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("h2", { className: "text-6xl font-bold uppercase", children: "Inciando sesi\xF3n asegun" }, void 0, !1, {
-      fileName: "app/routes/login.tsx",
-      lineNumber: 39,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/login.tsx",
-    lineNumber: 27,
-    columnNumber: 5
-  }, this);
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { className: "text-6xl font-bold uppercase", children: "Inciando sesi\xF3n asegun" })
+  ] });
 }
 
 // app/routes/blog.tsx
@@ -735,7 +494,7 @@ __export(blog_exports, {
 var import_react9 = require("@remix-run/react");
 
 // app/components/BlogCard.tsx
-var import_react8 = require("@remix-run/react"), import_relativeTime = __toESM(require("dayjs/plugin/relativeTime")), import_dayjs = __toESM(require("dayjs")), import_es_mx = require("dayjs/locale/es-mx"), import_jsx_dev_runtime7 = require("react/jsx-dev-runtime");
+var import_react8 = require("@remix-run/react"), import_relativeTime = __toESM(require("dayjs/plugin/relativeTime")), import_dayjs = __toESM(require("dayjs")), import_es_mx = require("dayjs/locale/es-mx"), import_jsx_runtime7 = require("react/jsx-runtime");
 import_dayjs.default.extend(import_relativeTime.default);
 import_dayjs.default.locale("es-mx");
 var BlogCard = ({
@@ -743,61 +502,33 @@ var BlogCard = ({
   slug,
   cover,
   createdAt
-}) => /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
+}) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
   import_react8.Link,
   {
     to: `${slug}`,
     className: "bg-gradient-to-r from-slate-600 to-slate-800 text-white p-4 rounded-md hover:ring-indigo-500 hover:ring transition-all flex items-center gap-4 min-w-full",
     children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
         "img",
         {
           src: cover,
           alt: "cover",
           className: "rounded-sm object-cover max-w-xs"
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/components/BlogCard.tsx",
-          lineNumber: 25,
-          columnNumber: 7
-        },
-        this
+        }
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("h3", { className: "text-2xl", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("h3", { className: "text-2xl", children: [
           " ",
           title
-        ] }, void 0, !0, {
-          fileName: "app/components/BlogCard.tsx",
-          lineNumber: 31,
-          columnNumber: 9
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "font-thin text-sm text-gray-300", children: (0, import_dayjs.default)(createdAt).from(/* @__PURE__ */ new Date()) }, void 0, !1, {
-          fileName: "app/components/BlogCard.tsx",
-          lineNumber: 32,
-          columnNumber: 9
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/components/BlogCard.tsx",
-        lineNumber: 30,
-        columnNumber: 7
-      }, this)
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "font-thin text-sm text-gray-300", children: (0, import_dayjs.default)(createdAt).from(/* @__PURE__ */ new Date()) })
+      ] })
     ]
-  },
-  void 0,
-  !0,
-  {
-    fileName: "app/components/BlogCard.tsx",
-    lineNumber: 21,
-    columnNumber: 5
-  },
-  this
+  }
 );
 
 // app/routes/blog.tsx
-var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime"), import_react10 = require("react"), loader3 = async () => ({ posts: await db.post.findMany({
+var import_jsx_runtime8 = require("react/jsx-runtime"), import_react10 = require("react"), loader3 = async () => ({ posts: await db.post.findMany({
   where: { published: !0 },
   select: {
     title: !0,
@@ -810,69 +541,29 @@ var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime"), import_react10 =
 }) });
 function Blog() {
   let { posts } = (0, import_react9.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("article", { className: "dark:bg-slate-800 min-h-screen", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("main", { className: "max-w-3xl mx-auto py-20 px-4 flex justify-between gap-4 items-center ", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("h2", { className: "font-medium text-4xl text-white", children: "\xA1Hola! \u{1F44B}\u{1F3FC} Bienvenid@ a mi jard\xEDn digital. \u{1FAB4}" }, void 0, !1, {
-          fileName: "app/routes/blog.tsx",
-          lineNumber: 31,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("p", { className: "text-2xl font-thin my-4 text-gray-200", children: "Soy @blissmo \u{1F913} y me gusta compartir lo que aprendo sobre desarrollo web independiente." }, void 0, !1, {
-          fileName: "app/routes/blog.tsx",
-          lineNumber: 34,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("p", { className: "text-2xl my-4 text-gray-200", children: "Ultimamente intento escribir y narrar bien. \u270D\u{1F3FC}" }, void 0, !1, {
-          fileName: "app/routes/blog.tsx",
-          lineNumber: 38,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/blog.tsx",
-        lineNumber: 30,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("article", { className: "dark:bg-slate-800 min-h-screen", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("main", { className: "max-w-3xl mx-auto py-20 px-4 flex justify-between gap-4 items-center ", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { className: "font-medium text-4xl text-white", children: "\xA1Hola! \u{1F44B}\u{1F3FC} Bienvenid@ a mi jard\xEDn digital. \u{1FAB4}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { className: "text-2xl font-thin my-4 text-gray-200", children: "Soy @blissmo \u{1F913} y me gusta compartir lo que aprendo sobre desarrollo web independiente." }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { className: "text-2xl my-4 text-gray-200", children: "Ultimamente intento escribir y narrar bien. \u270D\u{1F3FC}" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
         "img",
         {
           className: "rounded-3xl max-w-xs hover:rotate-3 hover:scale-105 hover:filter-none transition-all filter grayscale",
           src: "https://i.imgur.com/OtuQ5J8.png",
           alt: "Chilango at Prague"
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/routes/blog.tsx",
-          lineNumber: 42,
-          columnNumber: 9
-        },
-        this
+        }
       )
-    ] }, void 0, !0, {
-      fileName: "app/routes/blog.tsx",
-      lineNumber: 29,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("section", { className: "max-w-3xl mx-auto py-4 flex gap-4 flex-wrap", children: posts.map((post) => /* @__PURE__ */ (0, import_react10.createElement)(BlogCard, { ...post, key: post.id })) }, void 0, !1, {
-      fileName: "app/routes/blog.tsx",
-      lineNumber: 48,
-      columnNumber: 7
-    }, this),
-    posts.length < 1 && /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("p", { className: "bg-gray-600 text-gray-200 text-center py-12 max-w-3xl mx-auto block rounded-2xl text-xl font-thin hover:scale-95 transition-all", children: [
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("section", { className: "max-w-3xl mx-auto py-4 flex gap-4 flex-wrap", children: posts.map((post) => /* @__PURE__ */ (0, import_react10.createElement)(BlogCard, { ...post, key: post.id })) }),
+    posts.length < 1 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("p", { className: "bg-gray-600 text-gray-200 text-center py-12 max-w-3xl mx-auto block rounded-2xl text-xl font-thin hover:scale-95 transition-all", children: [
       " ",
       "No he escrito nada a\xFAn \u{1F625}",
       " "
-    ] }, void 0, !0, {
-      fileName: "app/routes/blog.tsx",
-      lineNumber: 61,
-      columnNumber: 9
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/blog.tsx",
-    lineNumber: 28,
-    columnNumber: 5
-  }, this);
+    ] })
+  ] });
 }
 
 // app/routes/dash.tsx
@@ -885,28 +576,20 @@ __export(dash_exports, {
 var import_node4 = require("@remix-run/node"), import_react12 = require("@remix-run/react"), import_slugify2 = __toESM(require("slugify"));
 
 // app/components/PostCard.tsx
-var import_react11 = require("@remix-run/react"), import_jsx_dev_runtime9 = require("react/jsx-dev-runtime"), PostCard = ({
+var import_react11 = require("@remix-run/react"), import_jsx_runtime9 = require("react/jsx-runtime"), PostCard = ({
   title,
   id
-}) => /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
+}) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
   import_react11.Link,
   {
     to: `${id}/edit`,
     className: "p-4 rounded-md border border-indigo-500 w-[300px] hover:ring-indigo-500 hover:ring ",
     children: title
-  },
-  void 0,
-  !1,
-  {
-    fileName: "app/components/PostCard.tsx",
-    lineNumber: 11,
-    columnNumber: 5
-  },
-  this
+  }
 );
 
 // app/routes/dash.tsx
-var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime"), action3 = async ({ request }) => {
+var import_jsx_runtime10 = require("react/jsx-runtime"), action3 = async ({ request }) => {
   if ((await request.formData()).get("intent") === "new-post") {
     let post = await db.post.create({
       data: {
@@ -921,25 +604,13 @@ var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime"), action3 = async
 }, loader4 = async ({ request }) => ({ posts: await db.post.findMany() });
 function Dash() {
   let { posts } = (0, import_react12.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-gray-200 py-20", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("nav", { className: "flex justify-between items-center max-w-3xl mx-auto", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("h2", { className: "block text-3xl font-bold mt-4 px-4 text-left", children: "Todos tus posts" }, void 0, !1, {
-          fileName: "app/routes/dash.tsx",
-          lineNumber: 40,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("p", { className: "px-4 text-md font-thin", children: "Administra tu blog" }, void 0, !1, {
-          fileName: "app/routes/dash.tsx",
-          lineNumber: 43,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/dash.tsx",
-        lineNumber: 39,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react12.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-gray-200 py-20", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("nav", { className: "flex justify-between items-center max-w-3xl mx-auto", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { className: "block text-3xl font-bold mt-4 px-4 text-left", children: "Todos tus posts" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "px-4 text-md font-thin", children: "Administra tu blog" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_react12.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "button",
         {
           type: "submit",
@@ -947,43 +618,15 @@ function Dash() {
           value: "new-post",
           className: "text-white mr-4 bg-indigo-500 py-2 px-8 rounded-md hover:bg-indigo-600",
           children: "Crear nuevo +"
-        },
-        void 0,
-        !1,
-        {
-          fileName: "app/routes/dash.tsx",
-          lineNumber: 46,
-          columnNumber: 11
-        },
-        this
-      ) }, void 0, !1, {
-        fileName: "app/routes/dash.tsx",
-        lineNumber: 45,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/routes/dash.tsx",
-      lineNumber: 38,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("section", { className: "max-w-3xl mx-auto flex flex-wrap gap-2 py-20 ", children: posts.map((p) => /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(PostCard, { id: p.id, title: p.title }, p.id, !1, {
-      fileName: "app/routes/dash.tsx",
-      lineNumber: 58,
-      columnNumber: 11
-    }, this)) }, void 0, !1, {
-      fileName: "app/routes/dash.tsx",
-      lineNumber: 56,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/dash.tsx",
-    lineNumber: 37,
-    columnNumber: 5
-  }, this);
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("section", { className: "max-w-3xl mx-auto flex flex-wrap gap-2 py-20 ", children: posts.map((p) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PostCard, { id: p.id, title: p.title }, p.id)) })
+  ] });
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-XOROI7TP.js", imports: ["/build/_shared/chunk-JAEGSAQI.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-BI2D3AEG.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-R26LFUWD.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-IRQ66YFF.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-3BXBPPS7.js", imports: ["/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-LE5J3XS2.js", imports: ["/build/_shared/chunk-WU6MF4C4.js", "/build/_shared/chunk-RZAQA4U2.js", "/build/_shared/chunk-TRU2QQSN.js", "/build/_shared/chunk-HU7KUH4M.js", "/build/_shared/chunk-DH7N3OP2.js", "/build/_shared/chunk-FJDG65RN.js", "/build/_shared/chunk-ITK5DZIN.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-M4CBKRSA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "574d0aec", hmr: void 0, url: "/build/manifest-574D0AEC.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-VURNA3FT.js", imports: ["/build/_shared/chunk-EUMSPPNY.js", "/build/_shared/chunk-GDLBX7ER.js", "/build/_shared/chunk-Q3IECNXJ.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-F2VY3T27.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-LGWYI357.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-JFOGQJKQ.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-YMAFAR3U.js", imports: ["/build/_shared/chunk-U7XGPDT7.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-QAUTPJEW.js", imports: ["/build/_shared/chunk-NAVFP6CD.js", "/build/_shared/chunk-QS5D6ZUT.js", "/build/_shared/chunk-DOJ2AMJT.js", "/build/_shared/chunk-U7XGPDT7.js", "/build/_shared/chunk-OHBVN6EP.js", "/build/_shared/chunk-IGCYVQJI.js", "/build/_shared/chunk-63UTSDEL.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-LLXH55NP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "85e9d99b", hmr: void 0, url: "/build/manifest-85E9D99B.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -1036,14 +679,17 @@ var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable
     module: dash_exports
   }
 };
+
+// server.ts
+var import_netlify = require("@remix-run/netlify"), import_node5 = require("@remix-run/node");
+(0, import_node5.installGlobals)();
+var handler = (0, import_netlify.createRequestHandler)({
+  build: server_build_exports,
+  mode: "production"
+});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  assets,
-  assetsBuildDirectory,
-  entry,
-  future,
-  publicPath,
-  routes
+  handler
 });
 /*! Bundled license information:
 
@@ -1059,4 +705,3 @@ var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable
    * @license MIT
    *)
 */
-//# sourceMappingURL=server.js.map
