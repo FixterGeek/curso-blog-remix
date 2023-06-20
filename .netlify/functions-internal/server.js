@@ -171,7 +171,7 @@ __export(root_exports, {
 var import_css_bundle = __toESM(require_dist()), import_react2 = require("@remix-run/react");
 
 // app/styles/style.css
-var style_default = "/build/_assets/style-WX23FDCE.css";
+var style_default = "/build/_assets/style-BE5MGOM4.css";
 
 // app/root.tsx
 var import_jsx_dev_runtime2 = require("react/jsx-dev-runtime"), links = () => [
@@ -979,70 +979,71 @@ var import_jsx_dev_runtime11 = require("react/jsx-dev-runtime"), action3 = async
   return null;
 }, loader5 = async ({ request }) => ({ posts: await db.post.findMany() });
 function Dash() {
-  let { posts } = (0, import_react14.useLoaderData)();
+  let { posts } = (0, import_react14.useLoaderData)(), navigation = (0, import_react14.useNavigation)();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-gray-200 py-20", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("nav", { className: "flex justify-between items-center max-w-3xl mx-auto", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("h2", { className: "block text-3xl font-bold mt-4 px-4 text-left", children: "Todos tus posts" }, void 0, !1, {
           fileName: "app/routes/dash.tsx",
-          lineNumber: 40,
+          lineNumber: 41,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("p", { className: "px-4 text-md font-thin", children: "Administra tu blog" }, void 0, !1, {
           fileName: "app/routes/dash.tsx",
-          lineNumber: 43,
+          lineNumber: 44,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/dash.tsx",
-        lineNumber: 39,
+        lineNumber: 40,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react14.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(
         "button",
         {
+          disabled: navigation.state !== "idle",
           type: "submit",
           name: "intent",
           value: "new-post",
-          className: "text-white mr-4 bg-indigo-500 py-2 px-8 rounded-md hover:bg-indigo-600",
-          children: "Crear nuevo +"
+          className: "text-white mr-4 bg-indigo-500 py-2 px-8 rounded-md hover:bg-indigo-600 disabled:bg-gray-500",
+          children: navigation.state !== "idle" ? "Cargando..." : "Crear nuevo +"
         },
         void 0,
         !1,
         {
           fileName: "app/routes/dash.tsx",
-          lineNumber: 46,
+          lineNumber: 47,
           columnNumber: 11
         },
         this
       ) }, void 0, !1, {
         fileName: "app/routes/dash.tsx",
-        lineNumber: 45,
+        lineNumber: 46,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/dash.tsx",
-      lineNumber: 38,
+      lineNumber: 39,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("section", { className: "max-w-3xl mx-auto flex flex-wrap gap-2 py-20 ", children: posts.map((p) => /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(PostCard, { id: p.id, title: p.title }, p.id, !1, {
       fileName: "app/routes/dash.tsx",
-      lineNumber: 58,
+      lineNumber: 60,
       columnNumber: 11
     }, this)) }, void 0, !1, {
       fileName: "app/routes/dash.tsx",
-      lineNumber: 56,
+      lineNumber: 58,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/dash.tsx",
-    lineNumber: 37,
+    lineNumber: 38,
     columnNumber: 5
   }, this);
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-IHSALGOU.js", imports: ["/build/_shared/chunk-JZVRI4DG.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-ZXVAGWMH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-ULWVAC5M.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-JLHMA6G4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog_.$postSlug": { id: "routes/blog_.$postSlug", parentId: "root", path: "blog/:postSlug", index: void 0, caseSensitive: void 0, module: "/build/routes/blog_.$postSlug-5KR6RQMA.js", imports: ["/build/_shared/chunk-S7YST2QI.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-JSCHMQEF.js", imports: ["/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-ATKQZN5I.js", imports: ["/build/_shared/chunk-IJE56NN4.js", "/build/_shared/chunk-3Q5YI4PV.js", "/build/_shared/chunk-DH7N3OP2.js", "/build/_shared/chunk-TRU2QQSN.js", "/build/_shared/chunk-FJDG65RN.js", "/build/_shared/chunk-ITK5DZIN.js", "/build/_shared/chunk-S7YST2QI.js", "/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-M4CBKRSA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "addc319a", hmr: void 0, url: "/build/manifest-ADDC319A.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-TNNSJL4Z.js", imports: ["/build/_shared/chunk-4BMBYB3R.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-S23Q7A2L.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-6JQH5EQN.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-BXQ2SFI6.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog_.$postSlug": { id: "routes/blog_.$postSlug", parentId: "root", path: "blog/:postSlug", index: void 0, caseSensitive: void 0, module: "/build/routes/blog_.$postSlug-K3W5U2UG.js", imports: ["/build/_shared/chunk-S7YST2QI.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-2SPN5WLG.js", imports: ["/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-54ZIZ3DD.js", imports: ["/build/_shared/chunk-IJE56NN4.js", "/build/_shared/chunk-3Q5YI4PV.js", "/build/_shared/chunk-DH7N3OP2.js", "/build/_shared/chunk-TRU2QQSN.js", "/build/_shared/chunk-FJDG65RN.js", "/build/_shared/chunk-ITK5DZIN.js", "/build/_shared/chunk-S7YST2QI.js", "/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-M4CBKRSA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "56a0d4b1", hmr: void 0, url: "/build/manifest-56A0D4B1.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
