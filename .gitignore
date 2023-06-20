@@ -8,3 +8,4 @@ node_modules
 .env
 wrangler.toml
 .netlify
+netlify.toml
