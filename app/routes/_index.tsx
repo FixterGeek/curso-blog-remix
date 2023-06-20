@@ -12,6 +12,7 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async () => {
+  console.log("NODENV: ", NODE_ENV);
   return { NODE_ENV, GOOGLE_CLIENT_ID };
 };
 
@@ -23,7 +24,9 @@ export default function Index() {
         id="g_id_onload"
         data-client_id={GOOGLE_CLIENT_ID}
         data-login_uri={
-          NODE_ENV === "development" ? "http://localhost:3000/login" : ""
+          NODE_ENV === "development"
+            ? "http://localhost:3000/login"
+            : "https://curso-blog-remix.netlify.app/login"
         }
         data-cancel_on_tap_outside="false"
       ></div>
