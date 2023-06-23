@@ -1,8 +1,44 @@
-import { type LoaderFunction } from "@remix-run/node";
+import { type V2_MetaFunction, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { BlogCard } from "~/components/BlogCard";
 import { db } from "~/utils/db";
 import type { ReadPostType } from "~/utils/zod";
+
+export const getBasicMetaData = ({
+  title = "blissmo blog",
+  description = "Aprende algo nuevo hoy.",
+  extra = [
+    {
+      property: "og:image",
+      content: "https://avatars.githubusercontent.com/u/7883990?v=4",
+    },
+    {
+      property: "og:url",
+      content: "https://curso-blog-remix.netlify.app/blog",
+    },
+  ],
+}: {
+  title?: string;
+  description?: string;
+  extra?: { property: string; content: string }[];
+} = {}) => {
+  return [
+    {
+      title,
+    },
+    { name: "description", content: description },
+    {
+      property: "og:title",
+      content: title,
+    },
+
+    ...extra,
+  ];
+};
+
+export const meta: V2_MetaFunction = () => {
+  return getBasicMetaData();
+};
 
 type LoaderData = {
   posts: ReadPostType[];
