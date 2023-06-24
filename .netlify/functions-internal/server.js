@@ -836,8 +836,15 @@ function Blog() {
 
 // app/routes/blog_.$postSlug.tsx
 var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime"), meta2 = ({ data }) => getBasicMetaData({
-  title: `Lee ahora: ${data.post.title}`,
   extra: [
+    {
+      property: "og:title",
+      content: `Lee ahora: ${data.post.title}`
+    },
+    {
+      property: "og:image",
+      content: data.post.cover ? data.post.cover : "https://i.imgur.com/vq9Xmon.png"
+    },
     { property: "og:description", content: data.post.body.slice(1, 30) }
   ]
 }), links3 = () => [
@@ -866,44 +873,196 @@ function PostDetail() {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_jsx_dev_runtime8.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("main", { className: "max-w-2xl mx-auto py-20 ", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(Avatar, { date: new Date(post.createdAt), author: post.author }, void 0, !1, {
       fileName: "app/routes/blog_.$postSlug.tsx",
-      lineNumber: 63,
+      lineNumber: 72,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_react11.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("p", { children: "Cargando..." }, void 0, !1, {
       fileName: "app/routes/blog_.$postSlug.tsx",
-      lineNumber: 64,
+      lineNumber: 73,
       columnNumber: 29
     }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_ContentToJSX.ContentToJSX, { content }, void 0, !1, {
       fileName: "app/routes/blog_.$postSlug.tsx",
-      lineNumber: 65,
+      lineNumber: 74,
       columnNumber: 11
     }, this) }, void 0, !1, {
       fileName: "app/routes/blog_.$postSlug.tsx",
-      lineNumber: 64,
+      lineNumber: 73,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/blog_.$postSlug.tsx",
-    lineNumber: 62,
+    lineNumber: 71,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/routes/blog_.$postSlug.tsx",
-    lineNumber: 61,
+    lineNumber: 70,
     columnNumber: 5
   }, this);
 }
+
+// app/routes/sitemap[.]xml.tsx
+var sitemap_xml_exports = {};
+__export(sitemap_xml_exports, {
+  loader: () => loader4
+});
+var loader4 = async ({ params, request }) => {
+  let url = new URL(request.url), postItems = (await db.post.findMany({
+    where: { published: !0 },
+    include: { author: !0 }
+  })).map((post) => [
+    "<url>",
+    `<loc>https://curso-blog-remix.netlify.app/blog/${post.slug}</loc>`,
+    `<lastmod>${post.createdAt}</lastmod>`,
+    "</url>"
+  ].join("")), xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    // Agregamos nuestras tres feeds a la lista de rutas (y cualquier otra ruta que quieras indexar)
+    "<url>",
+    "<loc>https://curso-blog-remix.netlify.app/feed.xml</loc>",
+    `<lastmod>${/* @__PURE__ */ new Date()}</lastmod>`,
+    "</url>",
+    "<url>",
+    "<loc>https://curso-blog-remix.netlify.app/feed.json</loc>",
+    `<lastmod>${/* @__PURE__ */ new Date()}</lastmod>`,
+    "</url>",
+    "<url>",
+    "<loc>https://curso-blog-remix.netlify.app/feed.atom</loc>",
+    `<lastmod>${/* @__PURE__ */ new Date()}</lastmod>`,
+    "</url>",
+    // index page, or /blog page
+    "<url>",
+    `<loc>${url.origin}/blog</loc>`,
+    `<lastmod>${/* @__PURE__ */ new Date()}</lastmod>`,
+    "</url>",
+    ...postItems,
+    "</urlset>"
+  ];
+  return new Response(xml.join(""), {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "x-content-type-options": "nosniff"
+    }
+  });
+};
+
+// app/routes/feed[.]atom.tsx
+var feed_atom_exports = {};
+__export(feed_atom_exports, {
+  loader: () => loader5
+});
+
+// app/utils/feed.server.ts
+var import_feed = require("feed");
+var generateFeed = async () => {
+  let feed = new import_feed.Feed({
+    title: "Blissmo blog",
+    description: "\xA1Mantente notificado de nuevos posts!",
+    id: "https://curso-blog-remix.netlify.app",
+    link: "https://curso-blog-remix.netlify.app",
+    language: "es",
+    // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
+    image: "https://i.imgur.com/LywcMSq.png",
+    favicon: "https://i.imgur.com/nVMrb56.png",
+    copyright: "All rights reserved 2023, H\xE9ctorbliss",
+    updated: new Date(2023, 6, 24),
+    // optional, default = today
+    feedLinks: {
+      json: "https://curso-blog-remix.netlify.app/json",
+      atom: "https://curso-blog-remix.netlify.app/atom",
+      rss: "https://curso-blog-remix.netlify.app/rss2.xml"
+    },
+    author: {
+      name: "H\xE9ctorbliss",
+      email: "fixtergeek@gmail.com",
+      link: "https://hectorbliss.com"
+    }
+  });
+  return (await db.post.findMany({
+    where: { published: !0 },
+    include: { author: !0 }
+  })).forEach((post) => {
+    feed.addItem({
+      title: post.title,
+      id: `https://curso-blog-remix.netlify.app/blog/${post.slug}`,
+      link: `https://curso-blog-remix.netlify.app/blog/${post.slug}`,
+      description: post.body.slice(1, 30),
+      content: post.body,
+      author: [
+        {
+          name: post.author.name ?? "",
+          email: post.author.email,
+          link: post.author.email
+        }
+      ],
+      contributor: [
+        {
+          name: "Brenda Ortega",
+          email: "brenda@fixter.org",
+          link: "https://www.brendago.design/"
+        }
+      ],
+      date: post.createdAt,
+      image: post.cover ?? ""
+    });
+  }), feed;
+}, getFeed = async (type = "rss2") => {
+  let feed = await generateFeed();
+  return type === "rss2" ? feed.rss2() : type === "atom1" ? feed.atom1() : feed.json1();
+};
+
+// app/routes/feed[.]atom.tsx
+var loader5 = async () => {
+  let feed = await getFeed("atom1");
+  return new Response(feed, {
+    headers: {
+      "Content-Type": "application/atom+xml; charset=utf-8",
+      "x-content-type-options": "nosniff"
+    }
+  });
+};
+
+// app/routes/feed[.]json.tsx
+var feed_json_exports = {};
+__export(feed_json_exports, {
+  loader: () => loader6
+});
+var loader6 = async () => {
+  let feed = await getFeed("json1");
+  return new Response(feed, {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-content-type-options": "nosniff"
+    }
+  });
+};
+
+// app/routes/feed[.]xml.tsx
+var feed_xml_exports = {};
+__export(feed_xml_exports, {
+  loader: () => loader7
+});
+var loader7 = async () => {
+  let feed = await getFeed("rss2");
+  return new Response(feed, {
+    headers: {
+      "Content-Type": "application/rss+xml;  charset=utf-8",
+      "x-content-type-options": "nosniff"
+    }
+  });
+};
 
 // app/routes/_index.tsx
 var index_exports = {};
 __export(index_exports, {
   default: () => Index,
-  loader: () => loader4,
+  loader: () => loader8,
   meta: () => meta3
 });
 var import_react12 = require("@remix-run/react"), import_jsx_dev_runtime9 = require("react/jsx-dev-runtime"), NODE_ENV = "development", GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID, meta3 = () => [
   { title: "Construye un blog con Remix" },
   { name: "description", content: "Hola blissmo" }
-], loader4 = async () => (console.log("NODENV: ", NODE_ENV), { NODE_ENV, GOOGLE_CLIENT_ID });
+], loader8 = async () => (console.log("NODENV: ", NODE_ENV), { NODE_ENV, GOOGLE_CLIENT_ID });
 function Index() {
   let { NODE_ENV: NODE_ENV2, GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID2 } = (0, import_react12.useLoaderData)();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex min-h-screen main", children: [
@@ -1040,7 +1199,7 @@ var dash_exports = {};
 __export(dash_exports, {
   action: () => action3,
   default: () => Dash,
-  loader: () => loader5
+  loader: () => loader9
 });
 var import_node4 = require("@remix-run/node"), import_react14 = require("@remix-run/react"), import_slugify2 = __toESM(require("slugify"));
 
@@ -1078,7 +1237,7 @@ var import_jsx_dev_runtime12 = require("react/jsx-dev-runtime"), action3 = async
     throw (0, import_node4.redirect)(`/dash/${post.id}/edit`);
   }
   return null;
-}, loader5 = async ({ request }) => ({ posts: await db.post.findMany() });
+}, loader9 = async ({ request }) => ({ posts: await db.post.findMany() });
 function Dash() {
   let { posts } = (0, import_react14.useLoaderData)(), navigation = (0, import_react14.useNavigation)();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("article", { className: "dark:bg-slate-800 min-h-screen dark:text-gray-200 py-20", children: [
@@ -1144,7 +1303,7 @@ function Dash() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-KRXHT36L.js", imports: ["/build/_shared/chunk-C44XEDGW.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-K2NRZFDA.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-2KQZFWLK.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-7V2YLKF4.js", imports: ["/build/_shared/chunk-PTBMZMP6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog_.$postSlug": { id: "routes/blog_.$postSlug", parentId: "root", path: "blog/:postSlug", index: void 0, caseSensitive: void 0, module: "/build/routes/blog_.$postSlug-7MLWSE7P.js", imports: ["/build/_shared/chunk-66JFX6GG.js", "/build/_shared/chunk-PTBMZMP6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-QK63TIPX.js", imports: ["/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-WNNESWXT.js", imports: ["/build/_shared/chunk-IJE56NN4.js", "/build/_shared/chunk-3Q5YI4PV.js", "/build/_shared/chunk-DH7N3OP2.js", "/build/_shared/chunk-TRU2QQSN.js", "/build/_shared/chunk-FJDG65RN.js", "/build/_shared/chunk-ITK5DZIN.js", "/build/_shared/chunk-66JFX6GG.js", "/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-M4CBKRSA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "236c9e0a", hmr: void 0, url: "/build/manifest-236C9E0A.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-QKGRBGZK.js", imports: ["/build/_shared/chunk-ALTW6BRC.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-WT7XFIEI.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-ZGI2S4VB.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog": { id: "routes/blog", parentId: "root", path: "blog", index: void 0, caseSensitive: void 0, module: "/build/routes/blog-WZUPSY6X.js", imports: ["/build/_shared/chunk-UOD6PNRB.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/blog_.$postSlug": { id: "routes/blog_.$postSlug", parentId: "root", path: "blog/:postSlug", index: void 0, caseSensitive: void 0, module: "/build/routes/blog_.$postSlug-WM6D4GZ3.js", imports: ["/build/_shared/chunk-UOD6PNRB.js", "/build/_shared/chunk-66JFX6GG.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash": { id: "routes/dash", parentId: "root", path: "dash", index: void 0, caseSensitive: void 0, module: "/build/routes/dash-CNLRDI4D.js", imports: ["/build/_shared/chunk-HU7KUH4M.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dash_.$postId.edit": { id: "routes/dash_.$postId.edit", parentId: "root", path: "dash/:postId/edit", index: void 0, caseSensitive: void 0, module: "/build/routes/dash_.$postId.edit-EBI5JJ5X.js", imports: ["/build/_shared/chunk-HU7KUH4M.js", "/build/_shared/chunk-IJE56NN4.js", "/build/_shared/chunk-3Q5YI4PV.js", "/build/_shared/chunk-DH7N3OP2.js", "/build/_shared/chunk-FJDG65RN.js", "/build/_shared/chunk-TRU2QQSN.js", "/build/_shared/chunk-ITK5DZIN.js", "/build/_shared/chunk-66JFX6GG.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/feed[.]atom": { id: "routes/feed[.]atom", parentId: "root", path: "feed.atom", index: void 0, caseSensitive: void 0, module: "/build/routes/feed[.]atom-5QBXDB6R.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/feed[.]json": { id: "routes/feed[.]json", parentId: "root", path: "feed.json", index: void 0, caseSensitive: void 0, module: "/build/routes/feed[.]json-M6N7EEBK.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/feed[.]xml": { id: "routes/feed[.]xml", parentId: "root", path: "feed.xml", index: void 0, caseSensitive: void 0, module: "/build/routes/feed[.]xml-ALQ4HW2Z.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-M4CBKRSA.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/sitemap[.]xml": { id: "routes/sitemap[.]xml", parentId: "root", path: "sitemap.xml", index: void 0, caseSensitive: void 0, module: "/build/routes/sitemap[.]xml-FCQIAROB.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "9ec68e7c", hmr: void 0, url: "/build/manifest-9EC68E7C.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -1171,6 +1330,38 @@ var assetsBuildDirectory = "public/build", future = { unstable_dev: !1, unstable
     index: void 0,
     caseSensitive: void 0,
     module: blog_postSlug_exports
+  },
+  "routes/sitemap[.]xml": {
+    id: "routes/sitemap[.]xml",
+    parentId: "root",
+    path: "sitemap.xml",
+    index: void 0,
+    caseSensitive: void 0,
+    module: sitemap_xml_exports
+  },
+  "routes/feed[.]atom": {
+    id: "routes/feed[.]atom",
+    parentId: "root",
+    path: "feed.atom",
+    index: void 0,
+    caseSensitive: void 0,
+    module: feed_atom_exports
+  },
+  "routes/feed[.]json": {
+    id: "routes/feed[.]json",
+    parentId: "root",
+    path: "feed.json",
+    index: void 0,
+    caseSensitive: void 0,
+    module: feed_json_exports
+  },
+  "routes/feed[.]xml": {
+    id: "routes/feed[.]xml",
+    parentId: "root",
+    path: "feed.xml",
+    index: void 0,
+    caseSensitive: void 0,
+    module: feed_xml_exports
   },
   "routes/_index": {
     id: "routes/_index",

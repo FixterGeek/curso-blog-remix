@@ -17,8 +17,17 @@ import { getBasicMetaData } from "./blog";
 
 export const meta: V2_MetaFunction = ({ data }) => {
   return getBasicMetaData({
-    title: `Lee ahora: ${data.post.title}`,
     extra: [
+      {
+        property: "og:title",
+        content: `Lee ahora: ${data.post.title}`,
+      },
+      {
+        property: "og:image",
+        content: data.post.cover
+          ? data.post.cover
+          : "https://i.imgur.com/vq9Xmon.png",
+      },
       { property: "og:description", content: data.post.body.slice(1, 30) },
     ],
   });
