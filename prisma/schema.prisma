@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = "prisma://aws-us-east-1.prisma-data.com/?api_key=fKzuZ34IwPxZGGzbzmzgxoBy7LD2eT5Z9WPcCqatBnaTi5eiSjJTCBVr9goNeOkB"
+  url      = env("PRISMA_PROXY")
   // directUrl = env("MONGO_ATLAS")
 }
 
