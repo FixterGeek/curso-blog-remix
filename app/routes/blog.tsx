@@ -1,65 +1,35 @@
 import { type V2_MetaFunction, type LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { BlogCard } from "~/components/BlogCard";
-import { db } from "~/utils/db";
-import type { ReadPostType } from "~/utils/zod";
-
-export const getBasicMetaData = ({
-  title = "blissmo blog",
-  description = "Aprende algo nuevo hoy.",
-  extra = [
-    {
-      property: "og:image",
-      content: "https://avatars.githubusercontent.com/u/7883990?v=4",
-    },
-    {
-      property: "og:url",
-      content: "https://curso-blog-remix.netlify.app/blog",
-    },
-  ],
-}: {
-  title?: string;
-  description?: string;
-  extra?: { property: string; content: string }[];
-} = {}) => {
-  return [
-    {
-      title,
-    },
-    { name: "description", content: description },
-    {
-      property: "og:title",
-      content: title,
-    },
-
-    ...extra,
-  ];
-};
+// import { useLoaderData } from "@remix-run/react";
+// import { BlogCard } from "~/components/BlogCard";
+// import { db } from "~/utils/db";
+import { getBasicMetaData } from "~/utils/getBasicMetadata";
+// import type { ReadPostType } from "~/utils/zod";
 
 export const meta: V2_MetaFunction = () => {
   return getBasicMetaData();
 };
 
-type LoaderData = {
-  posts: ReadPostType[];
-};
+// type LoaderData = {
+//   posts: ReadPostType[];
+// };
 export const loader: LoaderFunction = async () => {
-  const posts = await db.post.findMany({
-    where: { published: true },
-    select: {
-      title: true,
-      createdAt: true,
-      author: true,
-      id: true,
-      slug: true,
-      cover: true,
-    },
-  });
-  return { posts };
+  // const posts = await db.post.findMany({
+  //   where: { published: true },
+  //   select: {
+  //     title: true,
+  //     createdAt: true,
+  //     author: true,
+  //     id: true,
+  //     slug: true,
+  //     cover: true,
+  //   },
+  // });
+  // return { posts };
+  return null; // <= 🛠️ Borra
 };
 
 export default function Blog() {
-  const { posts } = useLoaderData<LoaderData>();
+  // const { posts } = useLoaderData<LoaderData>();
   return (
     <article className="dark:bg-slate-800 min-h-screen">
       <main className="max-w-3xl mx-auto py-20 px-4 flex justify-between gap-4 items-center ">
@@ -82,9 +52,9 @@ export default function Blog() {
         />
       </main>
       <section className="max-w-3xl mx-auto py-4 flex gap-4 flex-wrap">
-        {posts.map((post) => (
+        {/* {posts.map((post) => (
           <BlogCard {...post} key={post.id} />
-        ))}
+        ))} */}
         {/* <BlogCard
           createdAt={"6/19/2023"}
           title="Post de prueba"
@@ -93,7 +63,8 @@ export default function Blog() {
         /> */}
       </section>
 
-      {posts.length < 1 && (
+      {/* {posts.length < 1 && ( // <= 🛠️ Descomenta */}
+      {true && ( // <= 🛠️ Borra
         <p className="bg-gray-600 text-gray-200 text-center py-12 max-w-3xl mx-auto block rounded-2xl text-xl font-thin hover:scale-95 transition-all">
           {" "}
           No he escrito nada aún 😥{" "}

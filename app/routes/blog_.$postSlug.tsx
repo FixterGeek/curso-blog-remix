@@ -1,77 +1,82 @@
-import type { RenderableTreeNodes } from "@markdoc/markdoc";
+// import type { RenderableTreeNodes } from "@markdoc/markdoc";
 import {
-  type V2_MetaFunction,
+  // type V2_MetaFunction,
   type LinksFunction,
   type LoaderArgs,
 } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+// import { useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
-import { ContentToJSX } from "~/components/ContentToJSX.client";
-import { db } from "~/utils/db";
-import { markdownParser } from "~/utils/markdoc.server";
-import Avatar from "~/components/Avatar";
-import type { Post, User } from "@prisma/client";
-import styles from "~/styles/prismjs.css";
-import markdownStyles from "~/styles/markdown.css";
-import { getBasicMetaData } from "./blog";
+// import { ContentToJSX } from "~/components/ContentToJSX.client";
+// import { db } from "~/utils/db";
+// import { markdownParser } from "~/utils/markdoc.server";
+// import Avatar from "~/components/Avatar";
+// import type { Post, User } from "@prisma/client";
+// import styles from "~/styles/prismjs.css";
+// import markdownStyles from "~/styles/markdown.css";
+// import { getBasicMetaData } from "./blog";
 
-export const meta: V2_MetaFunction = ({ data }) => {
-  return getBasicMetaData({
-    extra: [
-      {
-        property: "og:title",
-        content: `Lee ahora: ${data.post.title}`,
-      },
-      {
-        property: "og:image",
-        content: data.post.cover
-          ? data.post.cover
-          : "https://i.imgur.com/vq9Xmon.png",
-      },
-      { property: "og:description", content: data.post.body.slice(1, 30) },
-    ],
-  });
-};
+// export const meta: V2_MetaFunction = ({ data }) => {
+//   return getBasicMetaData({
+//     extra: [
+//       {
+//         property: "og:title",
+//         content: `Lee ahora: ${data.post.title}`,
+//       },
+//       {
+//         property: "og:image",
+//         content: data.post.cover
+//           ? data.post.cover
+//           : "https://i.imgur.com/vq9Xmon.png",
+//       },
+//       { property: "og:description", content: data.post.body.slice(1, 30) },
+//     ],
+//   });
+// };
 
 export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: styles,
-  },
-  {
-    rel: "stylesheet",
-    href: markdownStyles,
-  },
+  // {
+  //   rel: "stylesheet",
+  //   href: styles,
+  // },
+  // {
+  //   rel: "stylesheet",
+  //   href: markdownStyles,
+  // },
 ];
 
-type LoaderData = {
-  content: RenderableTreeNodes;
-  post: Post & { author: User };
-};
+// type LoaderData = {
+//   content: RenderableTreeNodes;
+//   post: Post & { author: User };
+// };
 export const loader = async ({ params }: LoaderArgs) => {
-  const post = await db.post.findUnique({
-    where: { slug: params.postSlug },
-    select: {
-      title: true,
-      body: true,
-      createdAt: true,
-      author: true,
-    },
-  });
-  const content = await markdownParser(post.body);
-  return { content, post };
+  // const post = await db.post.findUnique({
+  //   where: { slug: params.postSlug },
+  //   select: {
+  //     title: true,
+  //     body: true,
+  //     createdAt: true,
+  //     author: true,
+  //   },
+  // });
+  // const content = await markdownParser(post.body);
+  // return { content, post };
+  return null; // <= 🛠️ Borra
 };
 
 export default function PostDetail() {
   // we are ignoring This TS alert
-  const { content, post } = useLoaderData<LoaderData>();
+  // const { content, post } = useLoaderData<LoaderData>();
 
   return (
     <>
+      {/* 🛠️ Borra => */}
+      <h2 className="mx-auto text-3xl text-center py-20">
+        Bórrame y sustitúyeme 👽
+      </h2>
       <main className="max-w-2xl mx-auto py-20 ">
-        <Avatar date={new Date(post.createdAt)} author={post.author} />
+        {/* <Avatar date={new Date(post.createdAt)} author={post.author} /> */}
         <Suspense fallback={<p>Cargando...</p>}>
-          <ContentToJSX content={content} />
+          {/* <ContentToJSX content={content} /> */}
         </Suspense>
       </main>
     </>

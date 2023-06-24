@@ -1,38 +1,44 @@
-import type { Post } from "@prisma/client";
+// import type { Post } from "@prisma/client"; // <= 🛠️ Descomenta opción 1
+// import { ReadPostType } from "~/utils/zod"; // <= 🛠️ Descomenta opción 2
 import {
-  redirect,
+  // redirect, // <= 🛠️ Descomenta
   type ActionFunction,
   type LoaderFunction,
 } from "@remix-run/node";
-import { Form, useLoaderData, useNavigation } from "@remix-run/react";
-import slugify from "slugify";
-import { PostCard } from "~/components/PostCard";
-import { db } from "~/utils/db";
+import {
+  Form,
+  // useLoaderData, // <= 🛠️ Descomenta
+  useNavigation,
+} from "@remix-run/react";
+// import slugify from "slugify"; // <= 🛠️ Descomenta
+// import { PostCard } from "~/components/PostCard"; // <= 🛠️ Descomenta
+// import { db } from "~/utils/db"; // <= 🛠️ Descomenta
 
 export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const intent = formData.get("intent");
-  if (intent === "new-post") {
-    const post = await db.post.create({
-      data: {
-        userId: "648ce85a2e43deef9f5b7a87", //@TODO from cookie
-        slug: slugify("nuevo-post-" + Date.now()),
-      },
-    });
-    throw redirect(`/dash/${post.id}/edit`);
-  }
+  // const formData = await request.formData(); // <= 🛠️ Descomenta
+  // const intent = formData.get("intent");
+  // if (intent === "new-post") {
+  //   const post = await db.post.create({
+  //     data: {
+  //       userId: "648ce85a2e43deef9f5b7a87", //@TODO from cookie
+  //       slug: slugify("nuevo-post-" + Date.now()),
+  //     },
+  //   });
+  //   throw redirect(`/dash/${post.id}/edit`);
+  // }
   return null;
 };
 
-type LoaderData = { posts: Post[] };
+// type LoaderData = { posts: Post[] }; // <= 🛠️ Descomenta
 export const loader: LoaderFunction = async ({ request }) => {
-  // const user // @TODO: only user's posts
-  const posts = await db.post.findMany();
-  return { posts };
+  // const user=
+  // const posts = await db.post.findMany(); // 🛠️ Descomenta
+  // return { posts };
+  return null; // <= 🛠️ Borra
 };
 
 export default function Dash() {
-  const { posts } = useLoaderData<LoaderData>();
+  // const { posts } = useLoaderData<LoaderData>();  // <= 🛠️ Descomenta
   const navigation = useNavigation();
   return (
     <article className="dark:bg-slate-800 min-h-screen dark:text-gray-200 py-20">
@@ -55,11 +61,12 @@ export default function Dash() {
           </button>
         </Form>
       </nav>
-      <section className="max-w-3xl mx-auto flex flex-wrap gap-2 py-20 ">
+      {/* 🛠️ Descomenta ⤵️ */}
+      {/* <section className="max-w-3xl mx-auto flex flex-wrap gap-2 py-20 ">
         {posts.map((p) => (
           <PostCard id={p.id} title={p.title} key={p.id} />
         ))}
-      </section>
+      </section> */}
     </article>
   );
 }
