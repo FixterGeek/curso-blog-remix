@@ -1009,6 +1009,15 @@ video {
   transition-duration: 150ms;
 }
 
+/* Google login modification */
+
+#credential_picker_container {
+  height: 202px;
+  top: 50% !important;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
 .hover\:rotate-3:hover {
   --tw-rotate: 3deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
