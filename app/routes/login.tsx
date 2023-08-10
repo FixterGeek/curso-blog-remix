@@ -1,28 +1,28 @@
 import {
-  type ActionFunction,
   redirect,
   type LoaderFunction,
   json,
+  type ActionArgs,
 } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { commitSession, getSession } from "~/sessions";
 import getOrCreateUser from "~/utils/getOrCreateUser";
 import { oneTapDataSchema, type OneTapType } from "~/utils/zod";
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
-  const body = Object.fromEntries(formData);
-  const data: OneTapType = {
-    credential: String(body.credential),
-    g_csrf_token: String(body.g_csrf_token), // método de seguridad recomendado
-  };
-
-  const validated = oneTapDataSchema.safeParse(data);
-  if (!validated.success) {
-    return json(null, { status: 404 });
+  const body = Object.fromEntries(formData) as OneTapType;
+  const cookieString = request.headers.get("Cookie");
+  if (!cookieString?.includes(body.g_csrf_token)) {
+    return json(null, { status: 400 });
   }
 
-  const user = await getOrCreateUser(data.credential);
+  const validated = oneTapDataSchema.safeParse(body);
+  if (!validated.success) {
+    return json(null, { status: 400 });
+  }
+  // Second part:
+  const user = await getOrCreateUser(validated.data.credential);
   const session = await getSession(request.headers.get("Cookie"));
   session.set("userId", user.id);
   return redirect("/dash", {

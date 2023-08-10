@@ -1,4 +1,8 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import {
+  redirect,
+  type LoaderArgs,
+  type V2_MetaFunction,
+} from "@remix-run/node";
 // import { useLoaderData } from "@remix-run/react";
 // Meta function opcional
 export const meta: V2_MetaFunction = () => {
@@ -9,7 +13,8 @@ export const meta: V2_MetaFunction = () => {
 };
 
 // El loader consigue las variables de entorno desde el servidor.
-export const loader = async () => {
+export const loader = async ({ request }: LoaderArgs) => {
+  return redirect(request.url + "login");
   return {
     NODE_ENV: process.env.NODE_ENV,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,

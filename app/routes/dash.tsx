@@ -20,7 +20,7 @@ export const action: ActionFunction = async ({ request }) => {
   // if (intent === "new-post") {
   //   const post = await db.post.create({
   //     data: {
-  //       userId: "648ce85a2e43deef9f5b7a87", //@TODO from cookie
+  //       userId: "648ce85a2e43deef9f5b7a87", // @RETO Cámbia por real
   //       slug: slugify("nuevo-post-" + Date.now()),
   //     },
   //   });
@@ -31,7 +31,6 @@ export const action: ActionFunction = async ({ request }) => {
 
 // type LoaderData = { posts: Post[] }; // <= 🛠️ Descomenta
 export const loader: LoaderFunction = async ({ request }) => {
-  // const user=
   // const posts = await db.post.findMany(); // 🛠️ Descomenta
   // return { posts };
   return null; // <= 🛠️ Borra
