@@ -20,8 +20,8 @@ export default function Index() {
   // const { NODE_ENV, GOOGLE_CLIENT_ID } = useLoaderData();
   return (
     <div className="flex min-h-screen main">
-      <h2 className="self-center mx-auto text-2xl px-4">
-        🛠️ Bórrame y sustitúyeme por un login bonito 👽
+      <h2 className="self-center mx-auto text-2xl px-4 text-indigo-500">
+        🛠️ Bórrame y sustitúyeme por un login bonito 👽 o una redirección
       </h2>
       {/* <div
         id="g_id_onload"

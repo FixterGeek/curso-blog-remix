@@ -10,4 +10,8 @@
   top: 50% !important;
   transform: translate(-50%, -50%);
   left: 50%;
+  padding-top: 2px;
+
+  background-image: linear-gradient(to right, indigo, blue);
+  border-radius: 9px;
 }
